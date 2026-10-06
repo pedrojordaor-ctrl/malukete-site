@@ -2,13 +2,13 @@
   publish = "."
   # Imagem de compartilhamento (WhatsApp/redes) precisa de URL absoluta:
   # aponta para o endereço do próprio deploy (domínio próprio em produção).
-  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${URL}#" index.html'
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${URL}#" index.html dia-das-criancas/index.html'
 
 [context.deploy-preview]
-  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html'
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html dia-das-criancas/index.html'
 
 [context.branch-deploy]
-  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html'
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html dia-das-criancas/index.html'
 
 [[headers]]
   for = "/*"
