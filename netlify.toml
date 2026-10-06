@@ -11,11 +11,6 @@
   command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html'
 
 [[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
