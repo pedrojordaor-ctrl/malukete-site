@@ -5,9 +5,13 @@
     return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
   }
 
+  // Origem do visitante (ex.: ?utm_source=instagram&utm_medium=stories) vai junto nas mensagens
+  var params = new URLSearchParams(location.search);
+  var origem = [params.get('utm_source'), params.get('utm_medium'), params.get('utm_campaign')].filter(Boolean).join(' / ');
+
   // Links de WhatsApp com mensagem pronta
   document.querySelectorAll('[data-wa]').forEach(function (a) {
-    a.href = waLink(a.getAttribute('data-wa'));
+    a.href = waLink(a.getAttribute('data-wa') + (origem ? ' (vim pelo ' + origem + ')' : ''));
   });
   document.querySelectorAll('[data-wa-service]').forEach(function (a) {
     a.href = waLink('Olá! Vim pelo site e tenho interesse em: ' + a.getAttribute('data-wa-service') + '. Pode me passar um orçamento?');
@@ -78,9 +82,11 @@
   // Formulários: salva o lead no Netlify Forms e abre o WhatsApp com a mensagem pronta
   var LABELS = {
     nome: 'Nome', telefone: 'WhatsApp', data: 'Data', tipo: 'Evento', cidade: 'Local',
-    criancas: 'Crianças', idades: 'Idades', servicos: 'Atividades', mensagem: 'Detalhes'
+    criancas: 'Crianças', idades: 'Idades', servicos: 'Atividades', mensagem: 'Detalhes', origem: 'Origem'
   };
   document.querySelectorAll('form[data-wa-form]').forEach(function (form) {
+    var hid = form.querySelector('input[name="origem"]');
+    if (hid && origem) hid.value = origem;
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var fd = new FormData(form);
