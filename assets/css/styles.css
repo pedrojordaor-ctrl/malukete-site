@@ -19,7 +19,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 body { margin: 0; font-family: var(--font-body); color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 17px; overflow-x: hidden; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -59,8 +59,8 @@ p { margin: 0 0 1em; }
 /* ===== Header ===== */
 .header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .92); backdrop-filter: blur(10px); transition: box-shadow .3s; }
 .header.is-scrolled { box-shadow: 0 4px 24px rgba(31, 27, 46, .08); }
-.header__inner { display: flex; align-items: center; justify-content: space-between; height: 78px; }
-.header__logo img { height: 58px; width: auto; }
+.header__inner { display: flex; align-items: center; justify-content: space-between; height: 96px; }
+.header__logo img { height: 78px; width: auto; }
 .nav { display: flex; align-items: center; gap: 26px; }
 .nav a:not(.btn) { text-decoration: none; font-weight: 700; color: var(--ink); position: relative; }
 .nav a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 3px; border-radius: 3px; background: var(--pink); transition: right .25s; }
@@ -233,7 +233,7 @@ p { margin: 0 0 1em; }
 
 /* ===== Responsivo ===== */
 @media (max-width: 1020px) {
-  .nav { position: fixed; inset: 0 0 auto 0; padding-top: 90px !important; background: #fff; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 16px 24px; box-shadow: 0 20px 30px rgba(0, 0, 0, .1); transform: translateY(-100%); visibility: hidden; transition: transform .3s, visibility .3s; z-index: -1; }
+  .nav { position: fixed; inset: 0 0 auto 0; padding-top: 108px !important; background: #fff; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 16px 24px; box-shadow: 0 20px 30px rgba(0, 0, 0, .1); transform: translateY(-100%); visibility: hidden; transition: transform .3s, visibility .3s; z-index: -1; }
   .nav.is-open { transform: none; visibility: visible; }
   .nav a:not(.btn) { padding: 14px 4px; border-bottom: 1px solid #F1EEF6; }
   .nav__cta { margin-top: 16px; }
@@ -253,7 +253,8 @@ p { margin: 0 0 1em; }
 }
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .header__logo img { height: 48px; }
+  .header__inner { height: 80px; }
+  .header__logo img { height: 62px; }
   .hero__ctas .btn { width: 100%; }
   .hero__badge { left: 0; }
   .services__grid, .events__grid { grid-template-columns: 1fr; }
