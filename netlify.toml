@@ -1,0 +1,45 @@
+[build]
+  publish = "."
+  # Imagem de compartilhamento (WhatsApp/redes) precisa de URL absoluta:
+  # aponta para o endereço do próprio deploy (domínio próprio em produção).
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${URL}#" index.html'
+
+[context.deploy-preview]
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html'
+
+[context.branch-deploy]
+  command = 'sed -i -E "/(og|twitter):image\"/ s#https://www\.malukete\.com\.br#${DEPLOY_PRIME_URL}#" index.html'
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+
+# URLs do site antigo -> novas seções
+[[redirects]]
+  from = "/index.htm"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/quem_somos.htm"
+  to = "/#sobre"
+  status = 301
+[[redirects]]
+  from = "/Atividades.htm"
+  to = "/#servicos"
+  status = 301
+[[redirects]]
+  from = "/contato.htm"
+  to = "/#orcamento"
+  status = 301
+[[redirects]]
+  from = "/fotos.htm"
+  to = "/#galeria"
+  status = 301
